@@ -16,6 +16,11 @@ public class PlacesRestController {
     @Autowired
     private PlacesService placesService;
 
+    @GetMapping("/")
+    private String getHelloWorld(){
+        return "Hello World!!";
+    }
+
     @GetMapping("/places/{subType}")
     private List<Places> getAllPlacesBySubType(@PathVariable String subType
             , @RequestParam(required = false) Integer page) {
