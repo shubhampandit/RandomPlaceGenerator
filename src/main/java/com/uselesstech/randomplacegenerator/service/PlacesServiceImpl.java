@@ -20,4 +20,14 @@ public class PlacesServiceImpl implements PlacesService {
         Pageable firstFiveElements = PageRequest.of(page, 5);
         return placesRepository.findAllBySubType(subType, firstFiveElements);
     }
+
+    @Override
+    public void insertOrSavePlace(Places places) {
+        placesRepository.save(places);
+    }
+
+    @Override
+    public void deletePlace(int placeId) {
+        placesRepository.deleteById(placeId);
+    }
 }

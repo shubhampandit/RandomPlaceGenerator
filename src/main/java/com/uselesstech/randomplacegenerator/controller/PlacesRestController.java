@@ -3,10 +3,7 @@ package com.uselesstech.randomplacegenerator.controller;
 import com.uselesstech.randomplacegenerator.entity.Places;
 import com.uselesstech.randomplacegenerator.service.PlacesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +22,21 @@ public class PlacesRestController {
     private List<Places> getAllPlacesBySubType(@PathVariable String subType
             , @RequestParam(required = false) Integer page) {
         return placesService.getAllPlacesBySubType(subType, page);
+    }
+
+    @PostMapping("/places")
+    private void insertPlace(@RequestBody Places places){
+        places.setId(0);
+        placesService.insertOrSavePlace(places);
+    }
+
+    @PutMapping("/places")
+    private void updatePlace(@RequestBody Places places){
+        placesService.insertOrSavePlace(places);
+    }
+
+    @DeleteMapping("/places/{placeId}")
+    private void deletePlace(@PathVariable int placeId){
+        placesService.deletePlace(placeId);
     }
 }
