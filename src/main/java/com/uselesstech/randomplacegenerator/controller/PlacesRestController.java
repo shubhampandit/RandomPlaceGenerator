@@ -18,6 +18,11 @@ public class PlacesRestController {
         return "Hello World!!";
     }
 
+    @GetMapping("/places")
+    private List<Places> getAllPlaces(@RequestParam(required = false) Integer page){
+        return placesService.getAllPlaces(page);
+    }
+
     @GetMapping("/places/{subType}")
     private List<Places> getAllPlacesBySubType(@PathVariable String subType
             , @RequestParam(required = false) Integer page) {

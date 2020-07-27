@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -14,6 +15,18 @@ public class PlacesServiceImpl implements PlacesService {
 
     @Autowired
     private PlacesRepository placesRepository;
+
+    String[] subTypes = {"Rock", "Country", "Pop"};
+
+    @Override
+    public List<Places> getAllPlaces(int page) {
+        List<Places> placeList = new ArrayList<>();
+        for (int i = 0; i < subTypes.length; i++) {
+            List<Places> tempList = getAllPlacesBySubType(subTypes[i], page);
+            placeList.addAll(tempList);
+        }
+        return placeList;
+    }
 
     @Override
     public List<Places> getAllPlacesBySubType(String subType, int page) {
