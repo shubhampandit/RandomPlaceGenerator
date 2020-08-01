@@ -16,7 +16,7 @@ public class PlacesServiceImpl implements PlacesService {
     @Autowired
     private PlacesRepository placesRepository;
 
-    String[] subTypes = {"Rock", "Country", "Pop"};
+    String[] subTypes = {"Rock", "Country", "Pop", "Forest"};
 
     @Override
     public List<Places> getAllPlaces(int page) {
