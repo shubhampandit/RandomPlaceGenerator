@@ -23,7 +23,7 @@ public class PlacesRestController {
         return placesService.getAllPlaces(page);
     }
 
-    @GetMapping("/places/{subType}")
+    @GetMapping("/places/type/{subType}")
     private List<Places> getAllPlacesBySubType(@PathVariable String subType
             , @RequestParam(required = false) Integer page) {
         return placesService.getAllPlacesBySubType(subType, page);
