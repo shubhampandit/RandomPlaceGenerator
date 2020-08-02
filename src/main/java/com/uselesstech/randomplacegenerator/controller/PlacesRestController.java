@@ -29,6 +29,12 @@ public class PlacesRestController {
         return placesService.getAllPlacesBySubType(subType, page);
     }
 
+    @GetMapping("/places/{placeNum}")
+    private List<Places> getAllPlacesByPlaceNum(@PathVariable int placeNum
+            , @RequestParam(required = false) Integer page) {
+        return placesService.getAllPlacesByPlaceNum(placeNum, page);
+    }
+
     @PostMapping("/places")
     private void insertPlace(@RequestBody Places places){
         places.setId(0);
