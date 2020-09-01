@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PlacesServiceImpl implements PlacesService {
@@ -26,6 +27,11 @@ public class PlacesServiceImpl implements PlacesService {
             placeList.addAll(tempList);
         }
         return placeList;
+    }
+
+    @Override
+    public Optional<Places> getPlaceByID(int id) {
+        return placesRepository.findById(id);
     }
 
     @Override

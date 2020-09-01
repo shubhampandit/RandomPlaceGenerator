@@ -12,11 +12,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class GlobalErrorHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<Object> handleAllException(Exception ex, WebRequest request) {
-        PlacesAPIError placesAPIError = new PlacesAPIError(HttpStatus.INTERNAL_SERVER_ERROR,
-                ex.getLocalizedMessage(), "Error Occurred!");
-
+    @ExceptionHandler(PlaceNotFoundException.class)
+    public ResponseEntity<Object> handlePlaceNotFoundException(Exception ex, WebRequest request) {
+        PlacesAPIError placesAPIError = new PlacesAPIError(HttpStatus.NOT_FOUND,
+                ex.getLocalizedMessage(), "Place Not Found!");
         return new ResponseEntity<Object>(placesAPIError, new HttpHeaders(), placesAPIError.getStatus());
     }
 }

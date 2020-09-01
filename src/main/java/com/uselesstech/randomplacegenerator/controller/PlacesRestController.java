@@ -1,11 +1,13 @@
 package com.uselesstech.randomplacegenerator.controller;
 
 import com.uselesstech.randomplacegenerator.entity.Places;
+import com.uselesstech.randomplacegenerator.error.PlaceNotFoundException;
 import com.uselesstech.randomplacegenerator.service.PlacesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class PlacesRestController {
@@ -48,6 +50,10 @@ public class PlacesRestController {
 
     @DeleteMapping("/places/{placeId}")
     private void deletePlace(@PathVariable int placeId){
+        Optional<Places> place = placesService.getPlaceByID(placeId);
+        if(!place.isPresent()){
+            throw new PlaceNotFoundException("Can't find place with ID : " + placeId);
+        }
         placesService.deletePlace(placeId);
     }
 }
