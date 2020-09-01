@@ -21,8 +21,8 @@ public class PlacesServiceImpl implements PlacesService {
     @Override
     public List<Places> getAllPlaces(int page) {
         List<Places> placeList = new ArrayList<>();
-        for (int i = 0; i < subTypes.length; i++) {
-            List<Places> tempList = getAllPlacesBySubType(subTypes[i], page);
+        for (String subType : subTypes) {
+            List<Places> tempList = getAllPlacesBySubType(subType, page);
             placeList.addAll(tempList);
         }
         return placeList;
